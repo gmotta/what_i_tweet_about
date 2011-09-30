@@ -12,7 +12,7 @@
     <div id="text"><%= text.each {|word| wordOcurrences[word] = 1 if wordOcurrences[word].nil?; 
     wordOcurrences[word] += 1 unless wordOcurrences[word].nil?; 
     topWords = wordOcurrences.sort {|a, b| a[1] <=> b[1]}; 
-    topWords.reverse!; topWords } %></div>
+    topWords.reverse!; topWords; } %></div>
 </div>
   <a href="http://github.com/vvgomes/what_i_tweet_about">
     <img style="position: absolute; top: 0; right: 0; border: 0;"
