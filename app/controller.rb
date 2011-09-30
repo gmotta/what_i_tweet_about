@@ -26,6 +26,9 @@ get %r{^\/(\w+)$} do |user|
     
     topWords = wordOcurrences.sort {|a, b| a[1] <=> b[1]}
     topWords.reverse!
+    serie1 = []
+    serie2 = []
+    topWords.each {|w| serie1.push(w[0]); serie2.push(w[1])}
 
     params = { 'text' => text }
     resource = URI.parse 'http://www.wordle.net/advanced'
@@ -33,7 +36,7 @@ get %r{^\/(\w+)$} do |user|
 
     html = Nokogiri::HTML response.body
     cloud = html.css('applet').to_s
-    erb :cloud, :locals => { :user => user, :cloud => cloud, :topWords => topWords }
+    erb :cloud, :locals => { :user => user, :cloud => cloud, :serie1 => serie1, :serie2 => serie2 }
 
   rescue Grackle::TwitterError, RuntimeError
     erb :index, :locals => { :notfound => true }
