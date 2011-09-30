@@ -20,7 +20,7 @@ get %r{^\/(\w+)$} do |user|
     text = tweets.map{ |t| t.text }.join(' ')
 
     wordOcurrences = {}
-    splittedWords - text.split(" ")
+    splittedWords = text.split(" ")
     splittedWords.each {|word| wordOcurrences[word] = 1 if wordOcurrences[word].nil?;
     wordOcurrences[word] += 1 unless wordOcurrences[word].nil? }
     
