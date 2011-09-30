@@ -19,8 +19,9 @@ get %r{^\/(\w+)$} do |user|
     tweets = client.statuses.user_timeline? :screen_name => user
     text = tweets.map{ |t| t.text }.join(' ')
 
-    wordOcurrences[] = nil
-    text.split(" ").each {|word| wordOcurrences[word] = 1 if wordOcurrences[word].nil?;
+    wordOcurrences = {}
+    splittedWords - text.split(" ")
+    splittedWords.each {|word| wordOcurrences[word] = 1 if wordOcurrences[word].nil?;
     wordOcurrences[word] += 1 unless wordOcurrences[word].nil? }
     
     topWords = wordOcurrences.sort {|a, b| a[1] <=> b[1]}
