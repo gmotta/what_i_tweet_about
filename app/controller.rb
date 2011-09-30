@@ -19,13 +19,19 @@ get %r{^\/(\w+)$} do |user|
     tweets = client.statuses.user_timeline? :screen_name => user
     text = tweets.map{ |t| t.text }.join(' ')
 
+    text.each {|word| wordOcurrences[word] = 1 if wordOcurrences[word].nil?
+    wordOcurrences[word] += 1 unless wordOcurrences[word].nil? }
+    
+    topWords = wordOcurrences.sort {|a, b| a[1] <=> b[1]}
+    topWords.reverse!
+
     params = { 'text' => text }
     resource = URI.parse 'http://www.wordle.net/advanced'
     response = Net::HTTP.post_form resource, params
 
     html = Nokogiri::HTML response.body
     cloud = html.css('applet').to_s
-    erb :cloud, :locals => { :user => user, :cloud => cloud, :text => text }
+    erb :cloud, :locals => { :user => user, :cloud => cloud, :topWords => topWOrds }
 
   rescue Grackle::TwitterError, RuntimeError
     erb :index, :locals => { :notfound => true }
