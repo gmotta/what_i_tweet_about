@@ -13,11 +13,11 @@
 	  <h1>That's what <strong>@<%= user %></strong> is tweeting about lately...</h1>
     <div id="cloud"><%= cloud %></div>
 
-<div id="chart" style="width: 600px; height: 300px">
+<div id="chart" style="width: 800px; height: 300px">
     <script type="text/javascript">
    $(function() {
     // the chart values
-    var thevalues = <%= serie2 %>;
+    var thevalues = <%= serie1 %>;
     // let's loop to build tooltips and x labels.
     var thetooltips = new Array(thevalues.length);
     var thelabels = new Array(thevalues.length);
@@ -29,9 +29,9 @@
     // build the chart with 1 serie using the above template.
     $("#chart").chart({
         template: "raphael_analytics",
-        tooltips: <%= serie1 %>,
+        tooltips: <%= serie2 %>,
         values: {
-            serie1: <%= serie2 %>,
+            serie1: <%= serie1 %>,
         },
         labels: <%= serie1 %>,
     });
@@ -93,7 +93,7 @@ $.elycharts.templates['raphael_analytics'] = {
         labels: true,
         labelsProps: {
             fill: "white",
-            "font-size": "8px"
+            "font-size": "12px"
         },
         labelsDistance: 10
     },
