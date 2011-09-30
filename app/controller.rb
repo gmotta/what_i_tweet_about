@@ -19,7 +19,7 @@ get %r{^\/(\w+)$} do |user|
     tweets = client.statuses.user_timeline? :screen_name => user
     text = tweets.map{ |t| t.text }.join(' ')
 
-    
+    wordOcurrences[] = nil
     text.split(" ").each {|word| wordOcurrences[word] = 1 if wordOcurrences[word].nil?;
     wordOcurrences[word] += 1 unless wordOcurrences[word].nil? }
     
