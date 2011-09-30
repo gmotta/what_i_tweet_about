@@ -29,11 +29,11 @@
     // build the chart with 1 serie using the above template.
     $("#chart").chart({
         template: "raphael_analytics",
-        tooltips: <%= serie2 %>,
+        tooltips: <%= serie1 %>,
         values: {
             serie1: <%= serie1 %>,
         },
-        labels: <%= serie1 %>,
+        labels: <%= serie2 %>,
     });
 });
 
