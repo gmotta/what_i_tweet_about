@@ -25,7 +25,7 @@ get %r{^\/(\w+)$} do |user|
 
     html = Nokogiri::HTML response.body
     cloud = html.css('applet').to_s
-    erb :cloud, :locals => { :user => user, :cloud => cloud }
+    erb :cloud, :locals => { :user => user, :cloud => cloud, :text => text }
 
   rescue Grackle::TwitterError, RuntimeError
     erb :index, :locals => { :notfound => true }
